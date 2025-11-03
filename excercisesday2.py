@@ -254,16 +254,78 @@ class Product:
     def add_stock(self, stock):
         self.stock += stock
 
+    def reduce_stock(self, stock):
+        self.stock -= stock
     
-    def reduce_stock():
+    def apply_discount(self, percentage):
+        self.price = self.price*(percentage/100)
     
-    def apply_discount(percentage):
-
+    def __str__(self):
+        return f"{self.name} - {self.product_id} - ${self.price} - stock: {self.stock}"
+    
+    def __repr__(self):
+        return f"{self.product_id} - {self.name} - {self.price} - {self.stock} - {self.category}"
+    
+    def __eq__(self, value):
+        if(self.name == value.name and value.price == self.price and value.product_id == self.product_id and self.category == value.category and self.category == value.category):
+            return True
+        else:
+            return False
+        
 class Review:
-    pass
+    def __init__(self,user , rating, comment):
+        self.user = user
+        self.rating = rating
+        self.comment = comment
+    
+    @property
+    def rating(self):
+        return self._rating
+
+    @rating.setter
+    def rating(self, value):
+        if value not in [1,2,3,4,5]:
+            raise ValueError("You can only rate the product from 1 to 5")
+        else:
+            self._rating = value
+    
+    def is_positive(self):
+        if self.rating >= 4:
+            return True
+        else:
+            return False
 
 class ProductWithReviews(Product):
-    pass
+    def __init__(self, product_id, name, price, stock, category,reviews=None):
+        super().__init__(product_id, name, price, stock, category)
+        if reviews==None:
+            reviews = []
+
+    def add_review():
+        pass
+
+    def average_rating():
+        pass
+
+    def get_review_summary():
+        pass
 
 class ShoppingCart:
-    pass
+    def __init__(self,items=None):
+        if items == None:
+            items = {}
+
+    def add_item():
+        pass 
+
+    def remove_item():
+        pass 
+
+    def update_quantity():
+        pass
+
+    def get_total():
+        pass
+    
+    def clear():
+        pass
